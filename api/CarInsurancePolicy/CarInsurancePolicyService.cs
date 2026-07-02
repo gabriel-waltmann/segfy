@@ -3,31 +3,46 @@ using System.Collections.Generic;
 
 namespace api.CarInsurancePolicy;
 
-public class CarInsurancePolicyService(ICarInsurancePolicyRepository repository) {
+public class CarInsurancePolicyService(ICarInsurancePolicyRepository repository)
+{
   private readonly ICarInsurancePolicyRepository _repository = repository;
+
+  public IEnumerable<CarInsurancePolicyEntity> List()
+  {
+    return _repository.List();
+  }
 
   public IEnumerable<CarInsurancePolicyEntity> List(int days)
   {
-    throw new NotImplementedException("to iimplement");
+    return _repository.List(days);
   }
 
-  public CarInsurancePolicyEntity Get(CarInsurancePolicyEntity novaApolice)
+  public CarInsurancePolicyEntity? Get(string number)
   {
-    throw new NotImplementedException("to iimplement");
+    return _repository.GetByNumber(number);
   }
 
   public CarInsurancePolicyEntity Create(CarInsurancePolicyEntity novaApolice)
   {
-    throw new NotImplementedException("to iimplement");
+    novaApolice.Number = GenerateNumber();
+    return _repository.Create(novaApolice);
   }
 
-  public CarInsurancePolicyEntity Update(CarInsurancePolicyEntity novaApolice)
+  public CarInsurancePolicyEntity? Update(string number, CarInsurancePolicyEntity apolice)
   {
-    throw new NotImplementedException("to iimplement");
+    apolice.Number = number;
+    return _repository.Update(apolice);
   }
-    
-  public void Update(string number)
+
+  public bool Delete(string number)
   {
-    throw new NotImplementedException("to iimplement");
+    return _repository.Delete(number);
+  }
+
+  private static string GenerateNumber()
+  {
+    var year = DateTime.Now.Year;
+    var sequence = Random.Shared.Next(1, 10000);
+    return $"SEG-{year}-{sequence:D4}";
   }
 }

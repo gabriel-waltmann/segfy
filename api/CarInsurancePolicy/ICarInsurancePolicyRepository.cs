@@ -2,9 +2,10 @@ namespace api.CarInsurancePolicy;
 
 public interface ICarInsurancePolicyRepository
 {
-    List<CarInsurancePolicyEntity> List(int days);
-    CarInsurancePolicyEntity Get(string number);
-    CarInsurancePolicyEntity Create(CarInsurancePolicyEntity dto);
-    CarInsurancePolicyEntity Update(string id, CarInsurancePolicyEntity dto);
-    CarInsurancePolicyEntity Delete(string id);
+    IEnumerable<CarInsurancePolicyEntity> List();
+    IEnumerable<CarInsurancePolicyEntity> List(int days);
+    CarInsurancePolicyEntity? GetByNumber(string number);
+    CarInsurancePolicyEntity Create(CarInsurancePolicyEntity entity);
+    CarInsurancePolicyEntity? Update(CarInsurancePolicyEntity entity);
+    bool Delete(string number);
 }
