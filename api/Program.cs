@@ -1,4 +1,6 @@
+using FluentValidation;
 using Microsoft.EntityFrameworkCore;
+using SharpGrip.FluentValidation.AutoValidation.Mvc.Extensions;
 using api.CarInsurancePolicy;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,7 +14,10 @@ builder.Services.AddDbContext<DatabaseContext>(options =>
 builder.Services.AddScoped<ICarInsurancePolicyRepository, CarInsurancePolicyRepository>();
 builder.Services.AddScoped<CarInsurancePolicyService>();
 
+builder.Services.AddValidatorsFromAssemblyContaining<CarInsurancePolicyValidator>();
+
 builder.Services.AddControllers();
+builder.Services.AddFluentValidationAutoValidation();
 
 var app = builder.Build();
 
