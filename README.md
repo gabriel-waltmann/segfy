@@ -1,9 +1,12 @@
-# Api
+# Car Insurance Policy System
 
-### Run the development server
+### Run development server
 ```bash
   docker compose up -d
-  cd api
-  dotnet run 
 ```
-Open [Swagger](http://localhost:5266/swagger) with your browser to see the result.
+
+Swagger: http://localhost:8080/swagger
+
+Api: http://localhost:8080
+
+Client: http://localhost:3000
