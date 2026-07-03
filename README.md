@@ -1,12 +1,47 @@
 # Car Insurance Policy System
 
-### Run development server
+## Project Structure
+- `/api` - .NET 8 (Backend)
+- `/client` - Vue.js / Vite (Frontend)
+- `docker-compose.yml` - Containers.
+
+## Main Functionalities
+* Policy Management (CRUD): Create, read, update, and delete insurance policies.
+* Customer & Vehicle Profiling: Store and manage policyholder details and associated vehicle data.
+* Automated Quoting/Validation: Backend business logic to validate policy rules and calculate premium structures.
+* RESTful API Design: Fully documented endpoints using Swagger UI for easy integration and testing.
+* Responsive Frontend: Fast, modern single-page application built with Vue.js and Vite.
+* Containerized Infrastructure: One-command setup for the entire stack (Database, API, Client) using Docker Compose.
+
+## Prerequisites
+* Docker Compose
+* .NET 8 SDK
+* EF Core CLI tools (`dotnet tool install --global dotnet-ef`)
+
+## How run the application in development mode
+1. Open your terminal
+2. run:
+  ```bash
+  git clone git@github.com:gabriel-waltmann/segfy.git
+
+  cd segfy
+  
+  docker compose up --build
+  
+  cd api
+
+  dotnet ef database update --connection "Server=localhost;Database=CarInsuranceDb;User Id=sa;Password=YourStrongPassword123!;TrustServerCertificate=True;"
+  ``
+  The application will be available at:
+    * Swagger: http://localhost:8080/swagger
+
+    * Api: http://localhost:8080
+
+    * Client: http://localhost:3000
+
+## How run backend unit tests
 ```bash
-  docker compose up -d
-```
+cd api.tests
 
-Swagger: http://localhost:8080/swagger
-
-Api: http://localhost:8080
-
-Client: http://localhost:3000
+dotnet test
+``
