@@ -19,6 +19,7 @@
 * EF Core CLI tools (`dotnet tool install --global dotnet-ef`)
 
 ## How run the application in development mode
+OBS: Project was tested in a arch linux machine
 1. Open your terminal
 2. run:
   ```bash
@@ -26,7 +27,7 @@
 
   cd segfy
   
-  docker compose up --build
+  docker compose up -d --build
   
   cd api
 
