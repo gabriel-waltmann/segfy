@@ -19,15 +19,27 @@ builder.Services.AddValidatorsFromAssemblyContaining<CarInsurancePolicyValidator
 builder.Services.AddControllers();
 builder.Services.AddFluentValidationAutoValidation();
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowFrontend",
+        policy =>
+        {
+            policy.WithOrigins("http://localhost:5173")
+                  .AllowAnyHeader()
+                  .AllowAnyMethod();
+        });
+});
+
 var app = builder.Build();
 
-// Swagger
 if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors("AllowFrontend");
 
 app.UseHttpsRedirection();
 
